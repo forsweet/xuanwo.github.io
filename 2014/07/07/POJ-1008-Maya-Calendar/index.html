@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POJ 1008 Maya Calendar | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="题目源地址：http://poj.org/problem?id=1008
+理解两种纪年法的转换，另外设一个days的变量保存总天数，然后以它为基准进行变换，没有什么难度。但是在具体的方法上，还是有些优化的余地。比如我不用写那么多长长的if判断语句，使用一个string数组就可以轻松搞定了，这是我不机智的地方。此外，应当注意到，两种纪年法的第一天分别是0和1，要小心。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POJ 1008 Maya Calendar">
+<meta property="og:url" content="http://xuanwo.org/2014/07/07/POJ-1008-Maya-Calendar/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="题目源地址：http://poj.org/problem?id=1008
+理解两种纪年法的转换，另外设一个days的变量保存总天数，然后以它为基准进行变换，没有什么难度。但是在具体的方法上，还是有些优化的余地。比如我不用写那么多长长的if判断语句，使用一个string数组就可以轻松搞定了，这是我不机智的地方。此外，应当注意到，两种纪年法的第一天分别是0和1，要小心。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POJ 1008 Maya Calendar">
+<meta name="twitter:description" content="题目源地址：http://poj.org/problem?id=1008
+理解两种纪年法的转换，另外设一个days的变量保存总天数，然后以它为基准进行变换，没有什么难度。但是在具体的方法上，还是有些优化的余地。比如我不用写那么多长长的if判断语句，使用一个string数组就可以轻松搞定了，这是我不机智的地方。此外，应当注意到，两种纪年法的第一天分别是0和1，要小心。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-POJ-1008-Maya-Calendar" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/07/07/POJ-1008-Maya-Calendar/" class="article-date">
+  <time datetime="2014-07-07T23:04:08.000Z" itemprop="datePublished">Jul 7 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      POJ 1008 Maya Calendar
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="题目">题目</h1><p>源地址：<a href="http://poj.org/problem?id=1008" target="_blank" rel="external">http://poj.org/problem?id=1008</a></p>
+<h1 id="理解">理解</h1><p>两种纪年法的转换，另外设一个<code>days</code>的变量保存总天数，然后以它为基准进行变换，没有什么难度。但是在具体的方法上，还是有些优化的余地。比如我不用写那么多长长的if判断语句，使用一个<code>string</code>数组就可以轻松搞定了，这是我不机智的地方。此外，应当注意到，两种纪年法的第一天分别是0和1，要小心。</p>
+<a id="more"></a>
+<h1 id="新技能get">新技能get</h1><p><a href="http://www.cplusplus.com/reference/string/string/?kw=string" target="_blank" rel="external">string类</a><br>C++就是比C高大上，再也不需要<code>char</code>数组了～<br>介绍一下<code>string类</code>常用的一些方法和变量：</p>
+<ul>
+<li><a href="http://www.cplusplus.com/reference/string/string/length/" target="_blank" rel="external"><code>length</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/string/string/find/" target="_blank" rel="external"><code>find</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/string/string/copy/" target="_blank" rel="external"><code>copy</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/string/string/swap-free/" target="_blank" rel="external"><code>swap</code></a></li>
+<li><a href="http://www.cplusplus.com/reference/string/string/compare/" target="_blank" rel="external"><code>compare</code></a></li>
+</ul>
+<h1 id="代码">代码</h1><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int transHabb(<span class="type">string</span> <span class="property">month</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"pop"</span>))    <span class="constant">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"no"</span>))   <span class="constant">return</span> <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"zip"</span>))   <span class="constant">return</span> <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"zotz"</span>))   <span class="constant">return</span> <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"tzec"</span>))   <span class="constant">return</span> <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"xul"</span>))   <span class="constant">return</span> <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"yoxkin"</span>))   <span class="constant">return</span> <span class="number">7</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"mol"</span>))   <span class="constant">return</span> <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"chen"</span>))   <span class="constant">return</span> <span class="number">9</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"yax"</span>))   <span class="constant">return</span> <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"zac"</span>))   <span class="constant">return</span> <span class="number">11</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"ceh"</span>))   <span class="constant">return</span> <span class="number">12</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"mac"</span>))   <span class="constant">return</span> <span class="number">13</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"kankin"</span>))   <span class="constant">return</span> <span class="number">14</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"muan"</span>))   <span class="constant">return</span> <span class="number">15</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"pax"</span>))   <span class="constant">return</span> <span class="number">16</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"koyab"</span>))   <span class="constant">return</span> <span class="number">17</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="property">month</span>.compare(<span class="string">"cumhu"</span>))   <span class="constant">return</span> <span class="number">18</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="constant">return</span> <span class="number">19</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">string</span> transTzolkin(int <span class="property">day</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">1</span>)    <span class="constant">return</span> <span class="string">"imix"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">2</span>)   <span class="constant">return</span> <span class="string">"ik"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">3</span>)   <span class="constant">return</span> <span class="string">"akbal"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">4</span>)   <span class="constant">return</span> <span class="string">"kan"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">5</span>)   <span class="constant">return</span> <span class="string">"chicchan"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">6</span>)   <span class="constant">return</span> <span class="string">"cimi"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">7</span>)   <span class="constant">return</span> <span class="string">"manik"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">8</span>)   <span class="constant">return</span> <span class="string">"lamat"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">9</span>)   <span class="constant">return</span> <span class="string">"muluk"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">10</span>)   <span class="constant">return</span> <span class="string">"ok"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">11</span>)   <span class="constant">return</span> <span class="string">"chuen"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">12</span>)   <span class="constant">return</span> <span class="string">"eb"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">13</span>)   <span class="constant">return</span> <span class="string">"ben"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">14</span>)   <span class="constant">return</span> <span class="string">"ix"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">15</span>)   <span class="constant">return</span> <span class="string">"mem"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">16</span>)   <span class="constant">return</span> <span class="string">"cib"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">17</span>)   <span class="constant">return</span> <span class="string">"caban"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">18</span>)   <span class="constant">return</span> <span class="string">"eznab"</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="property">day</span> == <span class="number">19</span>)   <span class="constant">return</span> <span class="string">"canac"</span>;</span><br><span class="line">    <span class="keyword">else</span>   <span class="constant">return</span> <span class="string">"ahau"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int Habb(int <span class="property">day</span>, <span class="type">string</span> <span class="property">month</span>, int <span class="property">year</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="command">    return</span> <span class="property">day</span> + (transHabb(<span class="property">month</span>) - <span class="number">1</span>) * <span class="number">20</span> + <span class="property">year</span> * <span class="number">365</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n;</span><br><span class="line">    cin &gt;&gt; n;</span><br><span class="line">    cout &lt;&lt; n &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">while</span> (n<span class="comment">--)</span></span><br><span class="line">    &#123;</span><br><span class="line">        int Tzolkinmonth = <span class="number">0</span>, Tzolkinyear = <span class="number">0</span>, Habbday = <span class="number">0</span>, Habbyear = <span class="number">0</span>, days = <span class="number">0</span>;</span><br><span class="line">        <span class="type">string</span> Tzolkinday = <span class="string">"\0"</span>, Habbmonth = <span class="string">"\0"</span>;</span><br><span class="line">        scanf(<span class="string">"%d. "</span>, &amp;Habbday);</span><br><span class="line">        cin &gt;&gt; Habbmonth;</span><br><span class="line">        scanf(<span class="string">" %d"</span>, &amp;Habbyear);</span><br><span class="line">        days = Habb(Habbday, Habbmonth, Habbyear);</span><br><span class="line">        Tzolkinyear = days / <span class="number">260</span>;</span><br><span class="line">        Tzolkinmonth = days % <span class="number">260</span> % <span class="number">13</span>+<span class="number">1</span>;</span><br><span class="line">        Tzolkinday = transTzolkin(days % <span class="number">260</span> % <span class="number">20</span>+<span class="number">1</span>);</span><br><span class="line">        cout &lt;&lt; Tzolkinmonth &lt;&lt; <span class="string">" "</span> &lt;&lt; Tzolkinday &lt;&lt; <span class="string">" "</span> &lt;&lt; Tzolkinyear &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年07月07日  已AC，文章BUG修正。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POJ/">POJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字典/">字典</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模拟/">模拟</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/07/10/POJ-1013-Counterfeit-Dollar/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          POJ 1013 Counterfeit Dollar
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/07/07/POJ-1007-DNA-Sorting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          POJ 1007 DNA Sorting
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/07/07/POJ-1008-Maya-Calendar/" data-title=POJ 1008 Maya Calendar data-url=http://xuanwo.org/2014/07/07/POJ-1008-Maya-Calendar/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

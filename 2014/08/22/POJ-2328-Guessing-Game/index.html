@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POJ 2328 Guessing Game | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="题目源地址：http://poj.org/problem?id=2328
+理解猜数字游戏，还是比较熟悉的模型。先确定一个正确数字，另一个人猜数字，然后回答猜测数字比正确数字是太高、太低还是正确。现在题中给定猜测的过程，让我们用程序验证这个猜测过程中，回答是否正确。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POJ 2328 Guessing Game">
+<meta property="og:url" content="http://xuanwo.org/2014/08/22/POJ-2328-Guessing-Game/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="题目源地址：http://poj.org/problem?id=2328
+理解猜数字游戏，还是比较熟悉的模型。先确定一个正确数字，另一个人猜数字，然后回答猜测数字比正确数字是太高、太低还是正确。现在题中给定猜测的过程，让我们用程序验证这个猜测过程中，回答是否正确。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POJ 2328 Guessing Game">
+<meta name="twitter:description" content="题目源地址：http://poj.org/problem?id=2328
+理解猜数字游戏，还是比较熟悉的模型。先确定一个正确数字，另一个人猜数字，然后回答猜测数字比正确数字是太高、太低还是正确。现在题中给定猜测的过程，让我们用程序验证这个猜测过程中，回答是否正确。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-POJ-2328-Guessing-Game" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/08/22/POJ-2328-Guessing-Game/" class="article-date">
+  <time datetime="2014-08-22T22:28:14.000Z" itemprop="datePublished">Aug 22 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      POJ 2328 Guessing Game
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="题目">题目</h1><p>源地址：<a href="http://poj.org/problem?id=2328" target="_blank" rel="external">http://poj.org/problem?id=2328</a></p>
+<h1 id="理解">理解</h1><p>猜数字游戏，还是比较熟悉的模型。<br>先确定一个正确数字，另一个人猜数字，然后回答猜测数字比正确数字是太高、太低还是正确。现在题中给定猜测的过程，让我们用程序验证这个猜测过程中，回答是否正确。</p>
+<a id="more"></a>
+<h1 id="代码">代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;cstdio&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;cstdlib&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;cstring&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;cmath&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;ctime&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;algorithm&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;vector&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;deque&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;list&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;set&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;map&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stack&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;queue&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;numeric&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iomanip&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;bitset&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;sstream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;fstream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts("-----")</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> pi (acos(-1.0))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> eps (1e-8)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf (1&lt;&lt;28)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[<span class="number">3</span>][<span class="number">20</span>] = &#123;<span class="string">"too high"</span>, <span class="string">"too low"</span>, <span class="string">"right on"</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> answer[<span class="number">1100</span>];</span><br><span class="line"><span class="keyword">int</span> getnum[<span class="number">1100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getanswer</span><span class="params">(<span class="keyword">char</span> ans[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">strcmp</span>(str[<span class="number">0</span>], ans) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(str[<span class="number">1</span>], ans) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">strcmp</span>(str[<span class="number">2</span>], ans) == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> tmp[<span class="number">20</span>];</span><br><span class="line">    <span class="keyword">int</span> num, rightnum;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">int</span> flag;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num), num != <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        getchar();</span><br><span class="line">        gets(tmp);</span><br><span class="line">        answer[<span class="number">0</span>] = getanswer(tmp);</span><br><span class="line">        getnum[<span class="number">0</span>] = num;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; answer[i] != <span class="number">0</span>; )</span><br><span class="line">        &#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num);</span><br><span class="line">            getchar();</span><br><span class="line">            gets(tmp);</span><br><span class="line">            answer[i] = getanswer(tmp);</span><br><span class="line">            getnum[i] = num;</span><br><span class="line">        &#125;</span><br><span class="line">        rightnum = getnum[i];</span><br><span class="line">        i++;</span><br><span class="line">        <span class="keyword">for</span> (flag = <span class="number">1</span>, j = <span class="number">0</span>; j &lt; i - <span class="number">1</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (getnum[j] - rightnum &gt; <span class="number">0</span> &amp;&amp; answer[j] == <span class="number">1</span> )</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (getnum[j] - rightnum &lt; <span class="number">0</span> &amp;&amp; answer[j] == -<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                flag = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (flag)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"Stan may be honest\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (flag == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"Stan is dishonest\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年08月22日 已AC。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POJ/">POJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/简单计算/">简单计算</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/08/22/POJ-2109-Power-of-Cryptography/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          POJ 2109 Power of Cryptography
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/08/22/POJ-2363-Blocks/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          POJ 2363 Blocks
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/08/22/POJ-2328-Guessing-Game/" data-title=POJ 2328 Guessing Game data-url=http://xuanwo.org/2014/08/22/POJ-2328-Guessing-Game/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

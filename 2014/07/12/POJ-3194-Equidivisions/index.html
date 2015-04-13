@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POJ 3194 Equidivisions | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="题目源地址：http://poj.org/problem?id=3194
+理解本以为只要逐个判断每一个数是否有相邻即可，事实上，少考虑了一种情况。比如下面给出的这种：12342211111111111122
+根据我原来的思路这种也是good，但其实并不是如此。当然，这个例子并不完备，但用于指出原来思路的漏洞已经够了。正确的思路应当是使用DFS来寻找是否存在独立的区块。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POJ 3194 Equidivisions">
+<meta property="og:url" content="http://xuanwo.org/2014/07/12/POJ-3194-Equidivisions/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="题目源地址：http://poj.org/problem?id=3194
+理解本以为只要逐个判断每一个数是否有相邻即可，事实上，少考虑了一种情况。比如下面给出的这种：12342211111111111122
+根据我原来的思路这种也是good，但其实并不是如此。当然，这个例子并不完备，但用于指出原来思路的漏洞已经够了。正确的思路应当是使用DFS来寻找是否存在独立的区块。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POJ 3194 Equidivisions">
+<meta name="twitter:description" content="题目源地址：http://poj.org/problem?id=3194
+理解本以为只要逐个判断每一个数是否有相邻即可，事实上，少考虑了一种情况。比如下面给出的这种：12342211111111111122
+根据我原来的思路这种也是good，但其实并不是如此。当然，这个例子并不完备，但用于指出原来思路的漏洞已经够了。正确的思路应当是使用DFS来寻找是否存在独立的区块。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-POJ-3194-Equidivisions" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/07/12/POJ-3194-Equidivisions/" class="article-date">
+  <time datetime="2014-07-12T23:12:37.000Z" itemprop="datePublished">Jul 12 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      POJ 3194 Equidivisions
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="题目">题目</h1><p>源地址：<a href="http://poj.org/problem?id=3194" target="_blank" rel="external">http://poj.org/problem?id=3194</a></p>
+<h1 id="理解">理解</h1><p>本以为只要逐个判断每一个数是否有相邻即可，事实上，少考虑了一种情况。<br>比如下面给出的这种：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2211</span><br><span class="line">1111</span><br><span class="line">1111</span><br><span class="line">1122</span><br></pre></td></tr></table></figure></p>
+<p>根据我原来的思路这种也是good，但其实并不是如此。当然，这个例子并不完备，但用于指出原来思路的漏洞已经够了。正确的思路应当是使用DFS来寻找是否存在独立的区块。</p>
+<a id="more"></a>
+<h1 id="代码">代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;cstring&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> N, ans;</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>[<span class="number">101</span>][<span class="number">101</span>];  </span><br><span class="line"><span class="keyword">int</span> visit[<span class="number">101</span>][<span class="number">101</span>];  </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> step[<span class="number">4</span>][<span class="number">2</span>] = &#123; &#123;-<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, <span class="number">1</span>&#125;, &#123;<span class="number">1</span>, <span class="number">0</span>&#125;, &#123;<span class="number">0</span>, -<span class="number">1</span>&#125; &#125;;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> color[<span class="number">101</span>];  </span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Check</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span> (x &gt;= N || x &lt; <span class="number">0</span> || y &gt;= N || y &lt; <span class="number">0</span>)  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;  </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> CurX, <span class="keyword">int</span> CurY)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    ans++;  </span><br><span class="line">    visit[CurX][CurY] = <span class="number">1</span>;  </span><br><span class="line">    color[<span class="built_in">map</span>[CurX][CurY]] = <span class="number">1</span>;  </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">int</span> x = CurX+step[i][<span class="number">0</span>];  </span><br><span class="line">        <span class="keyword">int</span> y = CurY+step[i][<span class="number">1</span>];  </span><br><span class="line">        <span class="keyword">if</span> (Check(x, y) == <span class="keyword">false</span> || visit[x][y] == <span class="number">1</span>)  </span><br><span class="line">            <span class="keyword">continue</span>;  </span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">map</span>[CurX][CurY] == <span class="built_in">map</span>[x][y] || color[<span class="built_in">map</span>[x][y]] == <span class="number">0</span>)  </span><br><span class="line">        &#123;  </span><br><span class="line">            DFS(x, y);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span>&gt;&gt;N &amp;&amp; N !=<span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">1</span>;  </span><br><span class="line">        ans = <span class="number">0</span>;  </span><br><span class="line">        <span class="built_in">memset</span>(<span class="built_in">map</span>, <span class="number">0</span>, <span class="keyword">sizeof</span>(<span class="built_in">map</span>));  </span><br><span class="line">        <span class="built_in">memset</span>(visit, <span class="number">0</span>, <span class="keyword">sizeof</span>(visit));  </span><br><span class="line">        <span class="built_in">memset</span>(color, <span class="number">0</span>, <span class="keyword">sizeof</span>(color));  </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N-<span class="number">1</span>; i++)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; N; j++)  </span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="keyword">int</span> a, b;  </span><br><span class="line">                <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;  </span><br><span class="line">                <span class="built_in">map</span>[a-<span class="number">1</span>][b-<span class="number">1</span>] = index;  </span><br><span class="line">            &#125;  </span><br><span class="line">            index++;  </span><br><span class="line">        &#125;  </span><br><span class="line">        DFS(<span class="number">0</span>, <span class="number">0</span>);  </span><br><span class="line">        <span class="keyword">if</span> (ans == N*N)  </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"good"</span>&lt;&lt;endl;  </span><br><span class="line">        <span class="keyword">else</span>  </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="string">"wrong"</span>&lt;&lt;endl;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年07月12日 已AC。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DFS/">DFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POJ/">POJ</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/07/13/POJ-1657-Distance-on-Chessboard/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          POJ 1657 Distance on Chessboard
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/07/12/POJ-2386-Lake-Counting/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          POJ 2386 Lake Counting
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/07/12/POJ-3194-Equidivisions/" data-title=POJ 3194 Equidivisions data-url=http://xuanwo.org/2014/07/12/POJ-3194-Equidivisions/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

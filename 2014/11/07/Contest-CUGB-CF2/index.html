@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CF拉练第二场 | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62027#overview
+比赛总结水掉A和B之后，就卡在了C和D上。C只是一个变形的最长上升子序列，却没有敲出来；D题是卡了半天，输出各种理解错，一直到还有20分钟结束的时候才过，这时候已经没有时间看E了。不过赛后了看，反正我也过不了E，23333。
+分题讲解A题（模拟）没啥好说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF拉练第二场">
+<meta property="og:url" content="http://xuanwo.org/2014/11/07/Contest-CUGB-CF2/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62027#overview
+比赛总结水掉A和B之后，就卡在了C和D上。C只是一个变形的最长上升子序列，却没有敲出来；D题是卡了半天，输出各种理解错，一直到还有20分钟结束的时候才过，这时候已经没有时间看E了。不过赛后了看，反正我也过不了E，23333。
+分题讲解A题（模拟）没啥好说">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CF拉练第二场">
+<meta name="twitter:description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62027#overview
+比赛总结水掉A和B之后，就卡在了C和D上。C只是一个变形的最长上升子序列，却没有敲出来；D题是卡了半天，输出各种理解错，一直到还有20分钟结束的时候才过，这时候已经没有时间看E了。不过赛后了看，反正我也过不了E，23333。
+分题讲解A题（模拟）没啥好说">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Contest-CUGB-CF2" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/11/07/Contest-CUGB-CF2/" class="article-date">
+  <time datetime="2014-11-07T10:19:52.000Z" itemprop="datePublished">Nov 7 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      CF拉练第二场
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="比赛地址">比赛地址</h1><p><a href="http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62027#overview" target="_blank" rel="external">http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62027#overview</a></p>
+<h1 id="比赛总结">比赛总结</h1><p>水掉A和B之后，就卡在了C和D上。C只是一个变形的最长上升子序列，却没有敲出来；D题是卡了半天，输出各种理解错，一直到还有20分钟结束的时候才过，这时候已经没有时间看E了。不过赛后了看，反正我也过不了E，23333。</p>
+<h1 id="分题讲解">分题讲解</h1><h2 id="A题（模拟）">A题（模拟）</h2><p>没啥好说的，其实根本就不用判断人名是否相同。<br><a href="http://xuanwo.org/2014/11/05/CF-5A/" target="_blank" rel="external">http://xuanwo.org/2014/11/05/CF-5A/</a></p>
+<h2 id="B题（模拟，字符串）">B题（模拟，字符串）</h2><p>注意理解题意，是左右摆动以保持平衡。<br><a href="http://xuanwo.org/2014/11/05/CF-5B/" target="_blank" rel="external">http://xuanwo.org/2014/11/05/CF-5B/</a></p>
+<h2 id="C题（LIS）">C题（LIS）</h2><p>稍微变形一下的最长上升子序列就写不出来，说明做题太死板，不懂变通，要加强。<br><a href="http://xuanwo.org/2014/11/07/CF-4D/" target="_blank" rel="external">http://xuanwo.org/2014/11/07/CF-4D/</a></p>
+<h2 id="D题（贪心）">D题（贪心）</h2><p>小心输出上的trick= =。<br><a href="http://xuanwo.org/2014/11/07/CF-3B/" target="_blank" rel="external">http://xuanwo.org/2014/11/07/CF-3B/</a></p>
+<h2 id="E题（几何）">E题（几何）</h2><p>论开脑洞的重要性，没有完善的证明。<br><a href="http://xuanwo.org/2014/11/06/CF-2C/" target="_blank" rel="external">http://xuanwo.org/2014/11/06/CF-2C/</a></p>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年11月7日 完成题解。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Contest/">Contest</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/13/CF-9A/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Codeforces Beta Round 9 A Die Roll (Div.2 Only)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/07/CF-3B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Codeforces Beta Round 3 B Lorry
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/11/07/Contest-CUGB-CF2/" data-title=CF拉练第二场 data-url=http://xuanwo.org/2014/11/07/Contest-CUGB-CF2/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

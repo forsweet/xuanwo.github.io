@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数论——筛法求素数 | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="暴力瞎搞求素数首先，我们需要个判断是否为素数的算法：1234567891011bool IsPrime(unsigned n)  //此处n是一个大于2的整数&amp;#123;    for (unsigned i = 2; i &amp;lt; n / 2 + 1; ++i)    &amp;#123;        if (n % i == 0)        &amp;#123;            return fa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数论——筛法求素数">
+<meta property="og:url" content="http://xuanwo.org/2015/03/18/number-theory-sieve-method-to-find-primes/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="暴力瞎搞求素数首先，我们需要个判断是否为素数的算法：1234567891011bool IsPrime(unsigned n)  //此处n是一个大于2的整数&amp;#123;    for (unsigned i = 2; i &amp;lt; n / 2 + 1; ++i)    &amp;#123;        if (n % i == 0)        &amp;#123;            return fa">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数论——筛法求素数">
+<meta name="twitter:description" content="暴力瞎搞求素数首先，我们需要个判断是否为素数的算法：1234567891011bool IsPrime(unsigned n)  //此处n是一个大于2的整数&amp;#123;    for (unsigned i = 2; i &amp;lt; n / 2 + 1; ++i)    &amp;#123;        if (n % i == 0)        &amp;#123;            return fa">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-number-theory-sieve-method-to-find-primes" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/03/18/number-theory-sieve-method-to-find-primes/" class="article-date">
+  <time datetime="2015-03-18T17:16:01.000Z" itemprop="datePublished">Mar 18 2015</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      数论——筛法求素数
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="暴力瞎搞求素数">暴力瞎搞求素数</h1><p>首先，我们需要个判断是否为素数的算法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">IsPrime</span><span class="params">(<span class="keyword">unsigned</span> n)</span>  <span class="comment">//此处n是一个大于2的整数</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">unsigned</span> i = <span class="number">2</span>; i &lt; n / <span class="number">2</span> + <span class="number">1</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n % i == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>然后，在for循环中逐个判断。。。。。。<br><em>你写写看啊，- -，看看队友会不会打扁你。。。</em><br>显然，这个方法太傻逼了= =，我们需要一个效率更高，更为机智算法。</p>
+<h1 id="一般的线性筛法">一般的线性筛法</h1><p>下面进入正题，我们来介绍一下求素数的线性筛法。</p>
+<h2 id="代码">代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">make_prime</span><span class="params">()</span>  </span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(prime, <span class="number">1</span>, <span class="keyword">sizeof</span>(prime));</span><br><span class="line">    prime[<span class="number">0</span>] = <span class="keyword">false</span>;</span><br><span class="line">    prime[<span class="number">1</span>] = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> N = <span class="number">31700</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>;  i &lt; N;  i++)</span><br><span class="line">        <span class="keyword">if</span> (prime[i]) </span><br><span class="line">        &#123;</span><br><span class="line">            primes[++cnt ] = i;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k = i * i; k &lt; N; k += i)</span><br><span class="line">                prime[k] = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法比较好理解:<br>初始时，假设全部都是素数，当找到一个素数时，显然这个素数乘上另外一个数之后都是合数(注意上面的 i<em>i ,  比 i</em>2 要快点 )，把这些合数都筛掉，即算法名字的由来。<br>但仔细分析能发现，这种方法会造成重复筛除合数，影响效率。比如10，在i=2的时候，k=2<em>15筛了一次；在i=5，k=5</em>6 的时候又筛了一次。所以，也就有了快速线性筛法。</p>
+<h1 id="快速线性筛法">快速线性筛法</h1><p>快速线性筛法没有冗余，不会重复筛除一个数，所以“几乎”是线性的，虽然从代码上分析，时间复杂度并不是O(n)。</p>
+<h2 id="代码-1">代码</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> N = <span class="number">200000</span>;</span><br><span class="line"><span class="keyword">long</span> prime[N] = &#123;<span class="number">0</span>&#125;, num_prime = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> isNotPrime[N] = &#123;<span class="number">1</span>, <span class="number">1</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">long</span> i = <span class="number">2</span> ; i &lt; N ; i ++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (! isNotPrime[i])</span><br><span class="line">            prime[num_prime ++] = i;</span><br><span class="line">        <span class="comment">//关键处1</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">long</span> j = <span class="number">0</span> ; j &lt; num_prime &amp;&amp; i * prime[j] &lt;  N ; j ++)</span><br><span class="line">        &#123;</span><br><span class="line">            isNotPrime[i * prime[j]] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span> ( !(i % prime[j] ) ) <span class="comment">//关键处2</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="理解">理解</h2><p>首先，先明确一个条件，任何合数都能表示成一系列素数的积。<br>不管 i 是否是素数，都会执行到“关键处1”。</p>
+<ol>
+<li><p>如果 i 都是是素数的话，那简单，一个大的素数 i 乘以不大于 i 的素数，这样筛除的数跟之前的是不会重复的。筛出的数都是 N=p1*p2的形式, p1，p2之间不相等</p>
+</li>
+<li><p>如果 i 是合数，此时 i 可以表示成递增素数相乘 i=p1<em>p2</em>…*pn, pi都是素数（2&lt;=i&lt;=n），  pi&lt;=pj  ( i&lt;=j )<br>p1是最小的系数。</p>
+</li>
+</ol>
+<p>根据“关键处2”的定义，当p1==prime[j] 的时候，筛除就终止了，也就是说，只能筛出不大于p1的质数*i。</p>
+<p>我们可以直观地举个例子：<code>i=2*3*5</code><br>此时能筛除 2<em>i ,不能筛除 3</em>i，<br>如果能筛除3<em>i 的话，当 i’ 等于 i’=3</em>3<em>5 时，筛除2</em>i’ 就和前面重复了。</p>
+<h1 id="引用">引用</h1><ul>
+<li><a href="http://blog.csdn.net/dinosoft/article/details/5829550" target="_blank" rel="external">一般筛法求素数+快速线性筛法求素数</a></li>
+<li><a href="http://coolshell.cn/articles/3738.html" target="_blank" rel="external">打印质数的各种算法</a></li>
+</ul>
+<h1 id="更新日子">更新日子</h1><ul>
+<li>2015年03月18日 首次完成。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Summary/">Summary</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数论/">数论</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/18/number-theory-quick-pow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数论——快速幂
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/11/number-theory-gcd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          数论——欧几里得算法
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2015/03/18/number-theory-sieve-method-to-find-primes/" data-title=数论——筛法求素数 data-url=http://xuanwo.org/2015/03/18/number-theory-sieve-method-to-find-primes/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

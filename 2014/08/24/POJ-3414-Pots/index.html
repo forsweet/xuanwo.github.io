@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POJ 3414 Pots | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="题目源地址：http://poj.org/problem?id=3414
+理解因为卡一道题然后整整两天没有做题目什么的太不科学了- -。纠结的难点在于，我怎么样把实现操作的路径打印出来。事实上，标记全部的六种状态，然后在bfs的过程中，把每一个状态全都输出到一个数组中去，然后再进行输出。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POJ 3414 Pots">
+<meta property="og:url" content="http://xuanwo.org/2014/08/24/POJ-3414-Pots/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="题目源地址：http://poj.org/problem?id=3414
+理解因为卡一道题然后整整两天没有做题目什么的太不科学了- -。纠结的难点在于，我怎么样把实现操作的路径打印出来。事实上，标记全部的六种状态，然后在bfs的过程中，把每一个状态全都输出到一个数组中去，然后再进行输出。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POJ 3414 Pots">
+<meta name="twitter:description" content="题目源地址：http://poj.org/problem?id=3414
+理解因为卡一道题然后整整两天没有做题目什么的太不科学了- -。纠结的难点在于，我怎么样把实现操作的路径打印出来。事实上，标记全部的六种状态，然后在bfs的过程中，把每一个状态全都输出到一个数组中去，然后再进行输出。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-POJ-3414-Pots" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/08/24/POJ-3414-Pots/" class="article-date">
+  <time datetime="2014-08-24T21:11:39.000Z" itemprop="datePublished">Aug 24 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      POJ 3414 Pots
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="题目">题目</h1><p>源地址：<a href="http://poj.org/problem?id=3414" target="_blank" rel="external">http://poj.org/problem?id=3414</a></p>
+<h1 id="理解">理解</h1><p>因为卡一道题然后整整两天没有做题目什么的太不科学了- -。<br>纠结的难点在于，我怎么样把实现操作的路径打印出来。事实上，标记全部的六种状态，然后在bfs的过程中，把每一个状态全都输出到一个数组中去，然后再进行输出。</p>
+<a id="more"></a>
+<h1 id="代码">代码</h1><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;cstdio&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cstdlib&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cstring&gt;</span></span><br><span class="line"><span class="comment">#include &lt;cmath&gt;</span></span><br><span class="line"><span class="comment">#include &lt;ctime&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string&gt;</span></span><br><span class="line"><span class="comment">#include &lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include &lt;deque&gt;</span></span><br><span class="line"><span class="comment">#include &lt;list&gt;</span></span><br><span class="line"><span class="comment">#include &lt;set&gt;</span></span><br><span class="line"><span class="comment">#include &lt;map&gt;</span></span><br><span class="line"><span class="comment">#include &lt;stack&gt;</span></span><br><span class="line"><span class="comment">#include &lt;queue&gt;</span></span><br><span class="line"><span class="comment">#include &lt;numeric&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iomanip&gt;</span></span><br><span class="line"><span class="comment">#include &lt;bitset&gt;</span></span><br><span class="line"><span class="comment">#include &lt;sstream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;fstream&gt;</span></span><br><span class="line"><span class="comment">#define debug puts("-----")</span></span><br><span class="line"><span class="comment">#define pi (acos(-1.0))</span></span><br><span class="line"><span class="comment">#define eps (1e-8)</span></span><br><span class="line"><span class="comment">#define inf (1&lt;&lt;28)</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">const <span class="keyword">int</span> maxn = <span class="number">110</span>;</span><br><span class="line"><span class="keyword">int</span> vis[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> a, b, c;</span><br><span class="line"><span class="keyword">int</span> step;</span><br><span class="line"><span class="keyword">int</span> flag;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">struct Status</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> k1, k2;</span><br><span class="line">    <span class="keyword">int</span> op;</span><br><span class="line">    <span class="keyword">int</span> step;</span><br><span class="line">    <span class="keyword">int</span> pre;</span><br><span class="line">&#125; <span class="string">q[maxn *maxn]</span>;</span><br><span class="line"><span class="keyword">int</span> id[maxn *maxn];</span><br><span class="line"><span class="keyword">int</span> lastIndex;</span><br><span class="line"></span><br><span class="line">void bfs()</span><br><span class="line">&#123;</span><br><span class="line">    Status now, <span class="keyword">next</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> head, tail;</span><br><span class="line">    head = tail = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="string">q[tail]</span>.k1 = <span class="number">0</span>; <span class="string">q[tail]</span>.k2 = <span class="number">0</span>;</span><br><span class="line">    <span class="string">q[tail]</span>.op = <span class="number">0</span>; <span class="string">q[tail]</span>.step = <span class="number">0</span>; <span class="string">q[tail]</span>.pre = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    tail++;</span><br><span class="line"></span><br><span class="line">    memset(vis, <span class="number">0</span>, sizeof(vis));</span><br><span class="line">    vis[<span class="number">0</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (head &lt; tail)</span><br><span class="line">    &#123;</span><br><span class="line">        now = <span class="string">q[head]</span>;</span><br><span class="line">        head++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (now.k1 == c || now.k2 == c)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = <span class="number">1</span>;</span><br><span class="line">            step = now.step;</span><br><span class="line">            lastIndex = head - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">next</span>.k1 = a;</span><br><span class="line">                <span class="keyword">next</span>.k2 = now.k2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">2</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">next</span>.k1 = now.k1;</span><br><span class="line">                <span class="keyword">next</span>.k2 = b;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">3</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">next</span>.k1 = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">next</span>.k2 = now.k2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">4</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">next</span>.k1 = now.k1;</span><br><span class="line">                <span class="keyword">next</span>.k2 = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">5</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (now.k1 + now.k2 &lt;= b)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">next</span>.k1 = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">next</span>.k2 = now.k1 + now.k2;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">next</span>.k1 = now.k1 + now.k2 - b;</span><br><span class="line">                    <span class="keyword">next</span>.k2 = b;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">6</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (now.k1 + now.k2 &lt;= a)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">next</span>.k1 = now.k1 + now.k2;</span><br><span class="line">                    <span class="keyword">next</span>.k2 = <span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">next</span>.k1 = a;</span><br><span class="line">                    <span class="keyword">next</span>.k2 = now.k1 + now.k2 - a;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">next</span>.op = i;</span><br><span class="line">            <span class="keyword">if</span> (!vis[<span class="keyword">next</span>.k1][<span class="keyword">next</span>.k2])</span><br><span class="line">            &#123;</span><br><span class="line">                vis[<span class="keyword">next</span>.k1][<span class="keyword">next</span>.k2] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">next</span>.step = now.step + <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">next</span>.pre = head - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="string">q[tail]</span>.k1 = <span class="keyword">next</span>.k1; <span class="string">q[tail]</span>.k2 = <span class="keyword">next</span>.k2;</span><br><span class="line">                <span class="string">q[tail]</span>.op = <span class="keyword">next</span>.op; <span class="string">q[tail]</span>.step = <span class="keyword">next</span>.step; <span class="string">q[tail]</span>.pre = <span class="keyword">next</span>.pre;</span><br><span class="line">                tail++;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">next</span>.k1 == c || <span class="keyword">next</span>.k2 == c)</span><br><span class="line">                &#123;</span><br><span class="line">                    flag = <span class="number">1</span>;</span><br><span class="line">                    step = <span class="keyword">next</span>.step;</span><br><span class="line">                    lastIndex = tail - <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, char const *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (scanf(<span class="string">"<span class="variable">%d</span><span class="variable">%d</span><span class="variable">%d</span>"</span>, &amp;a, &amp;b, &amp;c) != EOF)</span><br><span class="line">    &#123;</span><br><span class="line">        flag = <span class="number">0</span>;</span><br><span class="line">        step = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        bfs();</span><br><span class="line">        <span class="keyword">if</span> (flag)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">printf</span>(<span class="string">"<span class="variable">%d</span>\n"</span>, step);</span><br><span class="line"></span><br><span class="line">            id[step] = lastIndex;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = step - <span class="number">1</span>; i &gt;= <span class="number">1</span>; i--)</span><br><span class="line">            &#123;</span><br><span class="line">                id[i] = <span class="string">q[id[i + 1]</span>].pre;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= step; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"FILL(1)\n"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">2</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"FILL(2)\n"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">3</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"DROP(1)\n"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">4</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"DROP(2)\n"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">5</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"POUR(1,2)\n"</span>);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">q[id[i]</span>].op == <span class="number">6</span>)</span><br><span class="line">                    <span class="keyword">printf</span>(<span class="string">"POUR(2,1)\n"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">printf</span>(<span class="string">"impossible\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年08月24日 已AC。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BFS/">BFS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POJ/">POJ</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/08/24/POJ-3617-Best-Cow-Line/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          POJ 3617 Best Cow Line
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/08/22/POJ-1250-Tanning-Salon/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          POJ 1250 Tanning Salon
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/08/24/POJ-3414-Pots/" data-title=POJ 3414 Pots data-url=http://xuanwo.org/2014/08/24/POJ-3414-Pots/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>POJ 1051 P,MTHBGWB | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="题目源地址：http://poj.org/problem?id=1051
+理解简单的字符串转换，要有耐心= =，debug出翔。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POJ 1051 P,MTHBGWB">
+<meta property="og:url" content="http://xuanwo.org/2014/08/12/POJ-1051-P-MTHBGWB/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="题目源地址：http://poj.org/problem?id=1051
+理解简单的字符串转换，要有耐心= =，debug出翔。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="POJ 1051 P,MTHBGWB">
+<meta name="twitter:description" content="题目源地址：http://poj.org/problem?id=1051
+理解简单的字符串转换，要有耐心= =，debug出翔。">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-POJ-1051-P-MTHBGWB" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/08/12/POJ-1051-P-MTHBGWB/" class="article-date">
+  <time datetime="2014-08-12T00:31:00.000Z" itemprop="datePublished">Aug 12 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      POJ 1051 P,MTHBGWB
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="题目">题目</h1><p>源地址：<a href="http://poj.org/problem?id=1051" target="_blank" rel="external">http://poj.org/problem?id=1051</a></p>
+<h1 id="理解">理解</h1><p>简单的字符串转换，要有耐心= =，debug出翔。</p>
+<a id="more"></a>
+<h1 id="代码">代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;string.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MAX 102</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[MAX];</span><br><span class="line"><span class="keyword">char</span> code[<span class="number">4</span>*MAX];</span><br><span class="line"><span class="keyword">int</span> code_len[MAX];</span><br><span class="line"><span class="keyword">int</span> cnt;</span><br><span class="line"><span class="keyword">int</span> read_cnt;</span><br><span class="line"><span class="keyword">int</span> len;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * dic[]=&#123;<span class="string">".-"</span>,<span class="string">"-..."</span>,<span class="string">"-.-."</span>,<span class="string">"-.."</span>,<span class="string">"."</span>,<span class="string">"..-."</span>,<span class="string">"--."</span>,<span class="string">"...."</span>,<span class="string">".."</span>,<span class="string">".---"</span>,<span class="string">"-.-"</span>,<span class="string">".-.."</span>,<span class="string">"--"</span>,<span class="string">"-."</span>,<span class="string">"---"</span>,<span class="string">".--."</span>,<span class="string">"--.-"</span>,<span class="string">".-."</span>,<span class="string">"..."</span>,<span class="string">"-"</span>,<span class="string">"..-"</span>,<span class="string">"...-"</span>,<span class="string">".--"</span>,<span class="string">"-..-"</span>,<span class="string">"-.--"</span>,<span class="string">"--.."</span>,<span class="string">"..--"</span>,<span class="string">"---."</span>,<span class="string">".-.-"</span>,<span class="string">"----"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">len_of_code</span><span class="params">(<span class="keyword">char</span> ch)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(ch-<span class="string">'A'</span>&lt;<span class="number">26</span>&amp;&amp;ch-<span class="string">'A'</span>&gt;=<span class="number">0</span>) <span class="keyword">return</span> <span class="built_in">strlen</span>(dic[ch-<span class="string">'A'</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addcode</span><span class="params">(<span class="keyword">char</span> ch)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> _i;</span><br><span class="line">    <span class="keyword">char</span> cache[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">if</span>(ch-<span class="string">'A'</span>&gt;=<span class="number">0</span>&amp;&amp;ch-<span class="string">'A'</span>&lt;<span class="number">26</span>) <span class="built_in">strcpy</span>(cache,dic[ch-<span class="string">'A'</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">'_'</span>) <span class="built_in">strcpy</span>(cache,dic[<span class="number">26</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">'.'</span>) <span class="built_in">strcpy</span>(cache,dic[<span class="number">27</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">','</span>) <span class="built_in">strcpy</span>(cache,dic[<span class="number">28</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(ch==<span class="string">'?'</span>) <span class="built_in">strcpy</span>(cache,dic[<span class="number">29</span>]);</span><br><span class="line">    <span class="keyword">for</span>(_i=<span class="number">0</span>;cache[_i]!=<span class="string">'\0'</span>;_i++)</span><br><span class="line">    &#123;</span><br><span class="line">        code[cnt++]=cache[_i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">readcode</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> cache[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">int</span> _cnt;</span><br><span class="line">    <span class="keyword">int</span> _i,_j;</span><br><span class="line">    <span class="keyword">for</span>(_i=len-<span class="number">1</span>;_i&gt;=<span class="number">0</span>;_i--)</span><br><span class="line">    &#123;</span><br><span class="line">        _cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(_j=<span class="number">0</span>;_j&lt;code_len[_i];_j++)</span><br><span class="line">            cache[_cnt++]=code[read_cnt++];</span><br><span class="line">        cache[_cnt]=<span class="string">'\0'</span>;</span><br><span class="line">        <span class="keyword">for</span>(_j=<span class="number">0</span>;_j&lt;<span class="number">30</span>;_j++)</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strcmp</span>(cache,dic[_j])==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(_j&lt;<span class="number">26</span>) <span class="built_in">printf</span>(<span class="string">"%c"</span>,_j+<span class="string">'A'</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(_j==<span class="number">26</span>) <span class="built_in">printf</span>(<span class="string">"_"</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(_j==<span class="number">27</span>) <span class="built_in">printf</span>(<span class="string">"."</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(_j==<span class="number">28</span>) <span class="built_in">printf</span>(<span class="string">","</span>);</span><br><span class="line">                <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"?"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cnt=<span class="number">0</span>;read_cnt=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,str);</span><br><span class="line">        len=<span class="built_in">strlen</span>(str);</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;len;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            code_len[j]=len_of_code(str[j]);</span><br><span class="line">            addcode(str[j]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d: "</span>,i+<span class="number">1</span>);</span><br><span class="line">        readcode();</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年08月12日 已AC。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/POJ/">POJ</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/字符串/">字符串</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/08/12/POJ-1159-Palindrome/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          POJ 1159 Palindrome
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/08/12/POJ-3751-Date-Transfer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          POJ 3751 时间日期格式转换
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/08/12/POJ-1051-P-MTHBGWB/" data-title=POJ 1051 P,MTHBGWB data-url=http://xuanwo.org/2014/08/12/POJ-1051-P-MTHBGWB/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>

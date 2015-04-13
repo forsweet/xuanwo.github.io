@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CF拉练第五场 | Xuanwo&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62933#overview
+比赛总结前面被BC艹了一顿爆零之后，这场手感还不错。好多都是暴力+乱搞的题目，打得还行。不过自己的DP还是太弱，那场DP还得好好补，要不然像E这种题目只能看人品。
+分题讲解A题（字符串）贪心+乱搞，水过的题目。为了抢时间都没有测数据，幸运1A。http:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CF拉练第五场">
+<meta property="og:url" content="http://xuanwo.org/2014/11/16/Contest-CUGB-CF5/index.html">
+<meta property="og:site_name" content="Xuanwo's Blog">
+<meta property="og:description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62933#overview
+比赛总结前面被BC艹了一顿爆零之后，这场手感还不错。好多都是暴力+乱搞的题目，打得还行。不过自己的DP还是太弱，那场DP还得好好补，要不然像E这种题目只能看人品。
+分题讲解A题（字符串）贪心+乱搞，水过的题目。为了抢时间都没有测数据，幸运1A。http:">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CF拉练第五场">
+<meta name="twitter:description" content="比赛地址http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62933#overview
+比赛总结前面被BC艹了一顿爆零之后，这场手感还不错。好多都是暴力+乱搞的题目，打得还行。不过自己的DP还是太弱，那场DP还得好好补，要不然像E这种题目只能看人品。
+分题讲解A题（字符串）贪心+乱搞，水过的题目。为了抢时间都没有测数据，幸运1A。http:">
+  
+    <link rel="alternative" href="/atom.xml" title="Xuanwo&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//cdn.staticfile.org/html5shiv/r29/html5.js"></script><![endif]-->
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51515330-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/archives">Archives</a></li><li><a href="/categories/Opinion/">Opinion</a></li><li><a href="/categories/Learn/">Learn</a></li><li><a href="/categories/Summary/">Summary</a></li><li><a href="/categories/Daily/">Daily</a></li><li><a href="/about">About</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://xuanwo.org"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Contest-CUGB-CF5" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2014/11/16/Contest-CUGB-CF5/" class="article-date">
+  <time datetime="2014-11-16T13:06:10.000Z" itemprop="datePublished">Nov 16 2014</time>
+</a>
+		</span>
+		<span class="meta-elements author">Xuanwo</span>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      CF拉练第五场
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<h1 id="比赛地址">比赛地址</h1><p><a href="http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62933#overview" target="_blank" rel="external">http://acm.hust.edu.cn/vjudge/contest/view.action?cid=62933#overview</a></p>
+<h1 id="比赛总结">比赛总结</h1><p>前面被BC艹了一顿爆零之后，这场手感还不错。好多都是暴力+乱搞的题目，打得还行。不过自己的DP还是太弱，那场DP还得好好补，要不然像E这种题目只能看人品。</p>
+<h1 id="分题讲解">分题讲解</h1><h2 id="A题（字符串）">A题（字符串）</h2><p>贪心+乱搞，水过的题目。为了抢时间都没有测数据，幸运1A。<br><a href="http://xuanwo.org/2014/11/16/CF-11A/" target="_blank" rel="external">http://xuanwo.org/2014/11/16/CF-11A/</a></p>
+<h2 id="B题（进制转换）">B题（进制转换）</h2><p>机智+乱搞。<br>这个题正好跟前面那场BC有点像，能过也有点运气成分。不过思路出来之后敲得有点慢，这个是弱点。水题要出的快，出的稳，这样才能保住铜牌，233333。<br><a href="http://xuanwo.org/2014/11/16/CF-9C/" target="_blank" rel="external">http://xuanwo.org/2014/11/16/CF-9C/</a></p>
+<h2 id="C题（暴力）">C题（暴力）</h2><p>暴力+乱搞。<br>这道题只要能正确的找出导致BUG的两类情况就能A，我少考虑了一种，WA了一发，2A。<br><a href="http://xuanwo.org/2014/11/16/CF-8B/" target="_blank" rel="external">http://xuanwo.org/2014/11/16/CF-8B/</a></p>
+<h2 id="D题（字符串Hash，DP）">D题（字符串Hash，DP）</h2><p>字符串Hash+乱搞。<br>开了一个好几个50万的数组乱搞，感谢CF不限制内存占用= =。<br><a href="http://xuanwo.org/2014/11/16/CF-7D/" target="_blank" rel="external">http://xuanwo.org/2014/11/16/CF-7D/</a></p>
+<h2 id="E题（神DP）">E题（神DP）</h2><p>有一个神奇的递推公式，猜一猜，看RP，赛后出证明。<br><a href="http://xuanwo.org/2014/11/16/CF-9D/" target="_blank" rel="external">http://xuanwo.org/2014/11/16/CF-9D/</a></p>
+<h1 id="更新日志">更新日志</h1><ul>
+<li>2014年11月16日 完成题解。</li>
+</ul>
+
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Exercise/">Exercise</a>
+  </div>
+
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ACM/">ACM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Contest/">Contest</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/16/UVa-1347-Tour/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          UVa 1347 Tour
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/16/CF-9D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Codeforces Beta Round 9 D How many trees? (Div.2 Only)
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+  
+        <div class="ds-thread" data-thread-key="2014/11/16/Contest-CUGB-CF5/" data-title=CF拉练第五场 data-url=http://xuanwo.org/2014/11/16/Contest-CUGB-CF5/></div>
+
+</article>
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:xuanwo.org">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Xuanwo&#39;s Blog</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Xuanwo<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    <script type="text/javascript">
+var duoshuoQuery = {short_name:"xuanwo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script>
+
+<script src="//cdn.staticfile.org/jquery/2.1.1-rc2/jquery.min.js"></script>
+<script src="//xuanwo.qiniudn.com/js/jquery.tableofcontents.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){ $("#toc").tableOfContents(); });
+	</script>
+
+
+<link rel="stylesheet" href="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//cdn.staticfile.org/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+
+<script src="//xuanwo.qiniudn.com/js/script.js"></script>
+  </div>
+</body>
+</html>
